@@ -5,7 +5,7 @@ def prime_factors(n):
         while n%d == 0:
             factors.append(d)
             n /= d
-        d = d + 1
+        d += 1
 
     return factors
 

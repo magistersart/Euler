@@ -1,19 +1,38 @@
 __author__ = 'myatsko'
-from math import sqrt
-def sundaram(x):
-    ilim = (sqrt(2*x+1) - 1) / 2
-    a = range(1,x+1)
-    for i in range(1,int(ilim)):
-        jlim = (x - i) / (2 * i + 1)
-        for j in range(i,jlim):
-            if i+j+2*i*j in a:
-                a.remove(i+j+2*i*j)
-    for c in range(len(a)-1):
-        a[c] = 2*a[c] + 1
-    a.insert(0,2)
-    return a
+def create_primes(max_n):
+    """ creating primes up to a maximum value using a sieve algorithm. All
+        multiples of a prime are flagged as 'no prime'. In addition there
+        is an optimization by ignoring values flagged as none prime when
+        proceeding to next value."""
+    sieve  = [False, True] * (max_n // 2)
+    sieve += [False]
+
+    sieve[1] = False
+    sieve[2] = True
+    primes   = [2]
+
+    val = 3
+    while val <= max_n:
+        # now we have one prime
+        primes.append(val)
+        # strike out values not being a prime
+        offset  = val * 2
+        noprime = val + offset
+        while noprime <= max_n:
+            sieve[noprime] = False
+            noprime += offset
+        # next value
+        val += 2
+        while val <= max_n:
+            if not sieve[val]:
+                val += 2
+            else:
+                break
+
+    return primes
 
 summ = 0
-for z in sundaram(2000000):
+
+for z in create_primes(2000000):
     summ += z
     print z, summ

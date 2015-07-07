@@ -21,7 +21,6 @@ a.append([20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4,
 a.append([20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54])
 a.append([1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48])
 prod = 0
-print len(a)
 for count in range(len(a)):
     for count2 in range(len(a[count])-3):
         temph = a[count][count2]*a[count][count2+1]*a[count][count2+2]*a[count][count2+3]
